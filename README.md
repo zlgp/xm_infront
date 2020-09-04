@@ -1,4 +1,6 @@
 # novel_infront
+小说后台 使用技术栈:vue3.0
+
 
 ## Project setup
 ```
