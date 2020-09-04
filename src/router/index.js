@@ -12,6 +12,11 @@ Vue.use(VueRouter)
     component: Index
   },
   {
+    path: '/index',
+    name: 'Index',
+    component: Index
+  },
+  {
     path: '/classify',
     name: 'classify',
     component: classify
