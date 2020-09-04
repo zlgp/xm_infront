@@ -160,7 +160,7 @@ export default {
     // 获取轮播图
     const getBanner = async () => {
       await _this.$http
-        .post("http://localhost:5000/banner", {}, {})
+        .post("/banner", {}, {})
         .then(res => {
           state.bannerList = res.data.data.slice(0, 4);
         })
@@ -171,7 +171,7 @@ export default {
     // 获取重磅推荐
     const recommend = async () => {
       await _this.$http
-        .post("http://localhost:5000/recommend", {}, {})
+        .post("/recommend", {}, {})
         .then(res => {
           state.recommendList = res.data.data;
         })
@@ -182,7 +182,7 @@ export default {
     // 获取频道
     const channel = async () => {
       await _this.$http
-        .post("http://localhost:5000/get/channel", {}, {})
+        .post("/get/channel", {}, {})
         .then(res => {
           state.channelList = res.data.data;
         })
@@ -193,7 +193,7 @@ export default {
     // 获取最新上线
     const newOnline = async () => {
       await _this.$http
-        .post("http://localhost:5000/new", {}, {})
+        .post("/new", {}, {})
         .then(res => {
           state.newList = res.data.data;
         })

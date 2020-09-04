@@ -152,7 +152,7 @@ export default {
     // 获取分类
     const category = async () => {
       await _this.$http
-        .post("http://localhost:5000/get/category", {}, {})
+        .post("/get/category", {}, {})
         .then(res => {
           state.categoryList = res.data.data;
         })
@@ -203,7 +203,7 @@ export default {
     const ArticleData = async () => {
       await _this.$http
         .post(
-          "http://localhost:5000/search/condition",
+          "/search/condition",
           {},
           {
             ...state.params

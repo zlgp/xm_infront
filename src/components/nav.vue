@@ -49,7 +49,7 @@ export default {
     const getSearchList = async () => {
       await _this.$http
         .post(
-          "http://localhost:5000/get/associate",
+          "/get/associate",
           {},
           {
             title: stats.search
