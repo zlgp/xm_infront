@@ -34,11 +34,11 @@
 import Vue from "vue";
 import { reactive, toRefs, onMounted } from "@vue/composition-api";
 export default {
-  setup() {
+  setup(props, content) {
     const _this = Vue.prototype;
     const stats = reactive({
       search: "",
-      placeholder: "",
+      placeholder: localStorage.getItem("search_name"),
       getSearchData: [],
       restaurants: [],
       newRestaurants: [],
@@ -89,11 +89,12 @@ export default {
     };
     const handleSelect = item => {
       stats.search = item.value;
-      // this.$router.push({ path: "/search", query: { title: this.search } });
+       content.root.$router.push({ path: "/search", query: { title: stats.search } });
+        localStorage.setItem("search_name", stats.search);
     };
     const handleSearch = () => {
-      // this.$router.push({ path: "/search", query: { title: this.search } });
-      // localStorage.setItem("search_name", this.search);
+       content.root.$router.push({ path: "/search", query: { title: stats.search } });
+      localStorage.setItem("search_name", stats.search);
     };
     const handleInput = async title => {
       stats.search = title;

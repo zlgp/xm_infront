@@ -61,11 +61,11 @@
         <ul>
           <li v-for="(item,index) in  ArticleList" :key="index">
             <div class="img_box">
-              <!-- <goDetail :sid="item.id"> -->
-              <el-image :key="item.cover_link" :src="item.cover_link" lazy>
-                <div slot="error" class="image-slot">暂无封面图</div>
-              </el-image>
-              <!-- </goDetail> -->
+              <goDetail :sid="item.id">
+                <el-image :key="item.cover_link" :src="item.cover_link" lazy>
+                  <div slot="error" class="image-slot">暂无封面图</div>
+                </el-image>
+              </goDetail>
             </div>
             <div class="novel_msg">
               <h4 class="nover_title">{{item.book_name}}</h4>
@@ -75,9 +75,9 @@
                   <!-- <h4>字数：{{item.words}}字</h4> -->
                 </div>
                 <div class="novel_btn">
-                  <!-- <goRead :bookId="item.id" :sid="1"> -->
-                  <button>阅读</button>
-                  <!-- </goRead> -->
+                  <goRead :bookId="item.id" :sid="1">
+                    <button>阅读</button>
+                  </goRead>
                 </div>
               </div>
               <p>{{item.description}}</p>
@@ -105,14 +105,18 @@
 </template>
 
 <script>
+import goDetail from "../components/goDetail";
 import Nav from "../components/nav";
 import Vue from "vue";
 import Foot from "../components/foot.vue";
 import { reactive, toRefs, onMounted } from "@vue/composition-api";
+import goRead from "../components/goRead";
 export default {
   components: {
     Foot,
-    Nav
+    Nav,
+    goDetail,
+    goRead
   },
   setup() {
     const _this = Vue.prototype;
@@ -212,7 +216,6 @@ export default {
         .then(res => {
           state.ArticleList = res.data.data.results;
           state.total = res.data.data.count;
-          console.log(state.ArticleList);
         })
         .catch(error => {
           console.log(error);

@@ -15,9 +15,9 @@
               <div class="banner_imng">
                 <ul>
                   <li>
-                    <!-- <goDetail :sid="item.id"> -->
-                    <img :src="item.cover_link" alt />
-                    <!-- </goDetail> -->
+                    <goDetail :sid="item.id">
+                      <img :src="item.cover_link" alt />
+                    </goDetail>
                   </li>
                 </ul>
               </div>
@@ -36,11 +36,11 @@
           <li v-for="(item,index) in recommendList" :key="index">
             <div class="img_box">
               <!-- <img src="../../assets/img/index/Focus_4.png" alt /> -->
-              <!-- <goDetail :sid="item.id"> -->
-              <el-image :key="item.cover_link" :src="item.cover_link" lazy>
-                <div slot="error" class="image-slot">暂无封面图</div>
-              </el-image>
-              <!-- </goDetail> -->
+              <goDetail :sid="item.id">
+                <el-image :key="item.cover_link" :src="item.cover_link" lazy>
+                  <div slot="error" class="image-slot">暂无封面图</div>
+                </el-image>
+              </goDetail>
             </div>
             <div class="novel_title">
               <h5>{{item.book_name}}</h5>
@@ -60,11 +60,11 @@
           <ul>
             <li v-for="(value,index) in item.recommend" :key="index">
               <div class="img_box">
-                <!-- <goDetail :sid="value.id"> -->
-                <el-image :key="value.cover_link" :src="value.cover_link" lazy>
-                  <div slot="error" class="image-slot">暂无封面图</div>
-                </el-image>
-                <!-- </goDetail> -->
+                <goDetail :sid="value.id">
+                  <el-image :key="value.cover_link" :src="value.cover_link" lazy>
+                    <div slot="error" class="image-slot">暂无封面图</div>
+                  </el-image>
+                </goDetail>
               </div>
               <div class="novel_title">
                 <h5>{{value.book_name}}</h5>
@@ -81,10 +81,10 @@
                 <p class="line"></p>
               </div>
               <div class="type_list" v-for="(value,index2) in item1" :key="index2">
-                <!-- <goDetail :sid="value.id" class="godetail"> -->
-                <div class="novel_name">{{value.book_name}}</div>
-                <div class="author">{{value.author_name}}</div>
-                <!-- </goDetail> -->
+                <goDetail :sid="value.id" class="godetail">
+                  <div class="novel_name">{{value.book_name}}</div>
+                  <div class="author">{{value.author_name}}</div>
+                </goDetail>
               </div>
             </li>
           </ul>
@@ -105,11 +105,11 @@
         <ul>
           <li v-for="(item,index) in newList" :key="index">
             <div class="img_box">
-              <!-- <goDetail :sid="item.id"> -->
-              <el-image :key="item.cover_link" :src="item.cover_link" lazy>
-                <div slot="error" class="image-slot">暂无封面图</div>
-              </el-image>
-              <!-- </goDetail> -->
+              <goDetail :sid="item.id">
+                <el-image :key="item.cover_link" :src="item.cover_link" lazy>
+                  <div slot="error" class="image-slot">暂无封面图</div>
+                </el-image>
+              </goDetail>
             </div>
             <div class="new_msg">
               <h5>{{item.book_name}}</h5>
@@ -137,12 +137,14 @@
 <script>
 import Nav from "../components/nav";
 import Foot from "../components/foot.vue";
-import { reactive, toRefs, onMounted } from "@vue/composition-api";
+import { reactive, toRefs, onMounted, provide } from "@vue/composition-api";
 import Vue from "vue";
+import goDetail from "../components/goDetail";
 export default {
   components: {
     Foot,
-    Nav
+    Nav,
+    goDetail
   },
   setup(props, context) {
     const _this = Vue.prototype;
@@ -315,9 +317,9 @@ export default {
           .type_list {
             display: flex;
             margin-top: 30px;
-            // .godetail {
-            //   width: 100%;
-            //   display: flex;
+            .godetail {
+              width: 100%;
+              display: flex;
             .novel_name {
               // display: flex;
               // justify-content: flex-start;
@@ -344,7 +346,7 @@ export default {
               &:hover {
                 color: aqua;
               }
-              // }
+              }
             }
           }
         }

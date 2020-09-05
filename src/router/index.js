@@ -2,10 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '../views/index.vue'
 import classify from '../views/classify.vue'
+import detail from '../views/detail.vue'
+import read from '../views/read.vue'
+const search = () => import("../views/search.vue")
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Index',
@@ -20,6 +23,21 @@ Vue.use(VueRouter)
     path: '/classify',
     name: 'classify',
     component: classify
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: detail
+  },
+  {
+    path: '/read/:bookId/:id',
+    name: 'read',
+    component: read
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: search
   },
   // {
   //   path: '/about',

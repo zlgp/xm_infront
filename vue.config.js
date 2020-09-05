@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-    publicPath: './',
+    publicPath: '/',
     // 配置图标
     pwa: {
         iconPaths: {
