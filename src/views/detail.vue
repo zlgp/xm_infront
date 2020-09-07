@@ -51,7 +51,6 @@
 import moment from "moment";
 import Nav from "../components/nav";
 import Foot from "../components/foot.vue";
-import Vue from "vue";
 import { reactive, toRefs, onMounted, computed } from "@vue/composition-api";
 import goRead from "../components/goRead";
 export default {
@@ -60,8 +59,8 @@ export default {
     Nav,
     goRead
   },
-  setup(propos, content) {
-    const _this = Vue.prototype;
+  setup(propos, context) {
+    const _this = context.root;
     const state = reactive({
       DetailList: {},
       zeroth: [],

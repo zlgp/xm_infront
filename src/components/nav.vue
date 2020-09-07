@@ -31,11 +31,10 @@
 </template>
 
 <script>
-import Vue from "vue";
 import { reactive, toRefs, onMounted } from "@vue/composition-api";
 export default {
-  setup(props, content) {
-    const _this = Vue.prototype;
+  setup(props, context) {
+    const _this =context.root;
     const stats = reactive({
       search: "",
       placeholder: localStorage.getItem("search_name"),

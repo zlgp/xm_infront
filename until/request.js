@@ -1,6 +1,8 @@
 import vue from "vue"
 import axios from "axios"
 
+
+
 axios.defaults.baseURL = process.env.VUE_APP_BASEURL
 
 console.log(process.env.VUE_APP_BASEURL);
@@ -8,8 +10,6 @@ console.log(process.env.VUE_APP_BASEURL);
 
 export default {
     post: (url, headers, params) => {
-
-
         return new Promise((reslove, reject) => {
             axios.post(url, params, headers).then(res => {
                 switch (res.data.code) {

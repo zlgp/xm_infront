@@ -111,7 +111,7 @@
 <script>
 import Nav from "../components/nav";
 import Foot from "../components/foot.vue";
-import Vue from "vue";
+
 import {
   reactive,
   toRefs,
@@ -123,8 +123,8 @@ export default {
     Foot,
     Nav
   },
-  setup(propos, content) {
-    const _this = Vue.prototype;
+  setup(propos, context) {
+    const _this = context.root;
     const stats = reactive({
       params: {
         chapter_id: content.root.$route.params.id,

@@ -129,7 +129,6 @@ import {
   provide,
   watch
 } from "@vue/composition-api";
-import Vue from "vue";
 export default {
   components: {
     Nav,
@@ -137,8 +136,8 @@ export default {
     goDetail,
     goRead
   },
-  setup(props, content) {
-    const _this = Vue.prototype;
+  setup(props, context) {
+    const _this = context.root;
     const stats = reactive({
       title: content.root.$route.query.title,
       url: require("../assets/img/index/Focus_4.png"),

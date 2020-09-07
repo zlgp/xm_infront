@@ -138,7 +138,6 @@
 import Nav from "../components/nav";
 import Foot from "../components/foot.vue";
 import { reactive, toRefs, onMounted, provide } from "@vue/composition-api";
-import Vue from "vue";
 import goDetail from "../components/goDetail";
 export default {
   components: {
@@ -146,8 +145,9 @@ export default {
     Nav,
     goDetail
   },
-  setup(props, context) {
-    const _this = Vue.prototype;
+  setup(props, context) {  
+      
+    const _this = context.root;
     const state = reactive({
       bannerList: [],
       title: "",

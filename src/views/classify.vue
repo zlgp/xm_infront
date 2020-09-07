@@ -107,7 +107,6 @@
 <script>
 import goDetail from "../components/goDetail";
 import Nav from "../components/nav";
-import Vue from "vue";
 import Foot from "../components/foot.vue";
 import { reactive, toRefs, onMounted } from "@vue/composition-api";
 import goRead from "../components/goRead";
@@ -118,8 +117,8 @@ export default {
     goDetail,
     goRead
   },
-  setup() {
-    const _this = Vue.prototype;
+  setup(props,context) {
+    const _this =context.root;
     // 获取分类的类型
     const state = reactive({
       params: {
