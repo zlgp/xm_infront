@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Index from '../views/index.vue'
-import classify from '../views/classify.vue'
-import detail from '../views/detail.vue'
-import read from '../views/read.vue'
+
+const classify = () => import("../views/classify.vue")
+const detail = () => import("../views/detail.vue")
+const read = () => import("../views/read.vue")
+const Index = () => import("../views/index.vue")
 const search = () => import("../views/search.vue")
+
 
 Vue.use(VueRouter)
 
