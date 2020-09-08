@@ -16,25 +16,22 @@ module.exports = {
     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
     assetsDir: "static",
     // 指定生成的 index.html 的输出路径
-    indexPath:"index.html",
+    indexPath: "index.html",
     // 
     lintOnSave: false,  // 关闭eslint
     productionSourceMap: false,  // 生产环境下css 分离文件
 
     // css配置
 
-    css:{
-        extract:true,
+    css: {
+        extract: true,
         sourceMap: false,
-        
+
     },
     configureWebpack: {  // 覆盖webpack默认配置的都在这里
         resolve: {   // 配置解析别名
             alias: {
-                '@': path.resolve(__dirname, './src'),
-                '@h': path.resolve(__dirname, './src/assets/hotcss'),
-                '@s': path.resolve(__dirname, './src/assets/style'),
-                '@i': path.resolve(__dirname, './src/assets/images'),
+                '@': path.resolve(__dirname, './src/components'),
             }
         }
     }
