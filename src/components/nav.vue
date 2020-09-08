@@ -34,7 +34,7 @@
 import { reactive, toRefs, onMounted } from "@vue/composition-api";
 export default {
   setup(props, context) {
-    const _this =context.root;
+    const _this = context.root;
     const stats = reactive({
       search: "",
       placeholder: localStorage.getItem("search_name"),
@@ -42,7 +42,7 @@ export default {
       restaurants: [],
       newRestaurants: [],
       title: "",
-      search:""
+      search: ""
     });
     // 获取分类
     const getSearchList = async () => {
@@ -55,9 +55,10 @@ export default {
           }
         )
         .then(res => {
-          stats.getSearchData = res.data.data.titles;
+          let { code, data } = res.data;
+          stats.getSearchData = data.titles;
           stats.newRestaurants = [];
-          stats.restaurants = res.data.data.titles;
+          stats.restaurants = data.titles;
           stats.restaurants.forEach(element => {
             stats.newRestaurants.push({ value: element });
           });
@@ -88,11 +89,17 @@ export default {
     };
     const handleSelect = item => {
       stats.search = item.value;
-       content.root.$router.push({ path: "/search", query: { title: stats.search } });
-        localStorage.setItem("search_name", stats.search);
+      context.root.$router.push({
+        path: "/search",
+        query: { title: stats.search }
+      });
+      localStorage.setItem("search_name", stats.search);
     };
     const handleSearch = () => {
-       content.root.$router.push({ path: "/search", query: { title: stats.search } });
+      context.root.$router.push({
+        path: "/search",
+        query: { title: stats.search }
+      });
       localStorage.setItem("search_name", stats.search);
     };
     const handleInput = async title => {

@@ -145,8 +145,7 @@ export default {
     Nav,
     goDetail
   },
-  setup(props, context) {  
-      
+  setup(props, context) {
     const _this = context.root;
     const state = reactive({
       bannerList: [],
@@ -164,7 +163,8 @@ export default {
       await _this.$http
         .post("/banner", {}, {})
         .then(res => {
-          state.bannerList = res.data.data.slice(0, 4);
+          let { code, data } = res.data;
+          state.bannerList = data.slice(0, 4);
         })
         .catch(error => {
           console.log(error);
@@ -175,7 +175,8 @@ export default {
       await _this.$http
         .post("/recommend", {}, {})
         .then(res => {
-          state.recommendList = res.data.data;
+          let { code, data } = res.data;
+          state.recommendList = data;
         })
         .catch(error => {
           console.log(error);
@@ -186,7 +187,8 @@ export default {
       await _this.$http
         .post("/get/channel", {}, {})
         .then(res => {
-          state.channelList = res.data.data;
+          let { code, data } = res.data;
+          state.channelList = data;
         })
         .catch(error => {
           console.log(error);
@@ -197,7 +199,8 @@ export default {
       await _this.$http
         .post("/new", {}, {})
         .then(res => {
-          state.newList = res.data.data;
+          let { code, data } = res.data;
+          state.newList = data;
         })
         .catch(error => {
           console.log(error);
@@ -320,32 +323,32 @@ export default {
             .godetail {
               width: 100%;
               display: flex;
-            .novel_name {
-              // display: flex;
-              // justify-content: flex-start;
-              font-size: 14px;
-              font-weight: 400;
-              color: rgba(0, 0, 0, 1);
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              width: 50%;
-              cursor: pointer;
-              &:hover {
-                color: aqua;
+              .novel_name {
+                // display: flex;
+                // justify-content: flex-start;
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 1);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 50%;
+                cursor: pointer;
+                &:hover {
+                  color: aqua;
+                }
               }
-            }
-            .author {
-              flex: 1;
-              display: flex;
-              justify-content: flex-end;
-              font-size: 12px;
-              font-weight: 400;
-              color: rgba(153, 153, 153, 1);
-              cursor: pointer;
-              &:hover {
-                color: aqua;
-              }
+              .author {
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                font-size: 12px;
+                font-weight: 400;
+                color: rgba(153, 153, 153, 1);
+                cursor: pointer;
+                &:hover {
+                  color: aqua;
+                }
               }
             }
           }

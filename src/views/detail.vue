@@ -67,7 +67,7 @@ export default {
       start: "",
       li_current: -1,
       book_id: "",
-      id: content.root.$route.params.id,
+      id: context.root.$route.params.id,
       start: 0
     });
     // 根据id获取跳转进来的详情
@@ -81,8 +81,9 @@ export default {
           }
         )
         .then(res => {
-          state.DetailList = res.data.data.detail;
-          state.zeroth = res.data.data.zeroth;
+          let { code, data } = res.data;
+          state.DetailList = data.detail;
+          state.zeroth = data.zeroth;
           state.zeroth.map(element => {
             element.create_time = moment
               .unix(element.create_time)
@@ -105,7 +106,7 @@ export default {
 
     return {
       ...toRefs(state),
-      hadleRead,
+      hadleRead
     };
   }
 };

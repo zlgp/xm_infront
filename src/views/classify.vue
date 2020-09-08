@@ -117,8 +117,8 @@ export default {
     goDetail,
     goRead
   },
-  setup(props,context) {
-    const _this =context.root;
+  setup(props, context) {
+    const _this = context.root;
     // 获取分类的类型
     const state = reactive({
       params: {
@@ -157,7 +157,8 @@ export default {
       await _this.$http
         .post("/get/category", {}, {})
         .then(res => {
-          state.categoryList = res.data.data;
+          let { code, data } = res.data;
+          state.categoryList = data;
         })
         .catch(error => {
           console.log(error);
@@ -213,8 +214,9 @@ export default {
           }
         )
         .then(res => {
-          state.ArticleList = res.data.data.results;
-          state.total = res.data.data.count;
+          let { code, data } = res.data;
+          state.ArticleList = data.results;
+          state.total = data.count;
         })
         .catch(error => {
           console.log(error);

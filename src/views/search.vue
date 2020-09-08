@@ -139,7 +139,7 @@ export default {
   setup(props, context) {
     const _this = context.root;
     const stats = reactive({
-      title: content.root.$route.query.title,
+      title: context.root.$route.query.title,
       url: require("../assets/img/index/Focus_4.png"),
       // hasList: [0],
       total: 100,
@@ -162,8 +162,9 @@ export default {
           }
         )
         .then(res => {
-          stats.searchList = res.data.data.results;
-          stats.total = res.data.data.count;
+          let { code, data } = res.data;
+          stats.searchList = data.results;
+          stats.total = data.count;
         })
         .catch(error => {
           console.log(error);
@@ -179,9 +180,9 @@ export default {
       getSearchList();
     });
     watch(
-      () => content.root.$route,
+      () => context.root.$route,
       () => {
-        content.root.$router.go(0);
+        context.root.$router.go(0);
       }
     );
     return {

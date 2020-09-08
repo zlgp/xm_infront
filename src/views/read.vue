@@ -127,8 +127,8 @@ export default {
     const _this = context.root;
     const stats = reactive({
       params: {
-        chapter_id: content.root.$route.params.id,
-        book_id: content.root.$route.params.bookId
+        chapter_id: context.root.$route.params.id,
+        book_id: context.root.$route.params.bookId
       },
       drawer: false,
       title: "六界封神",
@@ -174,7 +174,8 @@ export default {
           }
         )
         .then(res => {
-          stats.ChapterList = res.data.data;
+          let { code, data } = res.data;
+          stats.ChapterList = data;
         })
         .catch(error => {
           console.log(error);
@@ -192,8 +193,9 @@ export default {
           }
         )
         .then(res => {
-          stats.totalSection = res.data.data.chapter_list.length;
-          stats.CatalogList = res.data.data;
+          let { code, data } = res.data;
+          stats.totalSection = data.chapter_list.length;
+          stats.CatalogList = data;
 
           if (stats.totalSection > stats.params.chapter_id) {
             stats.haveData = true;
@@ -223,18 +225,19 @@ export default {
           }
         )
         .then(res => {
-          if (res.data.code == 0) {
-            stats.ChapterList = res.data.data;
+          let { code, data } = res.data;
+          if (code == 0) {
+            stats.ChapterList = data;
             // this.bookId = this.ChapterList.book_id;
 
-            content.root.$router.push({
+            context.root.$router.push({
               name: "read",
               params: {
                 bookId: stats.params.book_id,
                 id: stats.params.chapter_id
               }
             });
-          } else if (res.data.code == 404) {
+          } else if (code == 404) {
             stats.lastHaveData = false;
             return false;
           } else {
@@ -259,18 +262,19 @@ export default {
           }
         )
         .then(res => {
-          if (res.data.code == 0) {
-            stats.ChapterList = res.data.data;
+          let { code, data } = res.data;
+          if (code == 0) {
+            stats.ChapterList = data;
             // this.bookId = this.ChapterList.book_id;
 
-            content.root.$router.push({
+            context.root.$router.push({
               name: "read",
               params: {
                 bookId: stats.params.book_id,
                 id: stats.params.chapter_id
               }
             });
-          } else if (res.data.code == 404) {
+          } else if (code == 404) {
             stats.lastHaveData = false;
             return false;
           } else {
@@ -296,22 +300,23 @@ export default {
           }
         )
         .then(res => {
-          if (res.data.code == 0) {
-            stats.ChapterList = res.data.data;
+          let { code, data } = res.data;
+          if (code == 0) {
+            stats.ChapterList = data;
             // this.bookId = this.ChapterList.book_id;
             if (stats.totalSection > stats.params.chapter_id) {
               stats.haveData = true;
             } else {
               stats.haveData = false;
             }
-            content.root.$router.push({
+            context.root.$router.push({
               name: "read",
               params: {
                 bookId: stats.params.book_id,
                 id: stats.params.chapter_id
               }
             });
-          } else if (res.data.code == 404) {
+          } else if (code == 404) {
             stats.lastHaveData = false;
             return false;
           } else {
@@ -345,7 +350,6 @@ export default {
           }
         ];
       }
-      console.log(stats.ascending);
 
       await catelog();
     };
@@ -410,7 +414,7 @@ export default {
       }
     };
     const handleSkip = async () => {
-      content.root.$router.push("/index");
+      context.root.$router.push("/index");
     };
 
     // 根据bookId获取目录结构
