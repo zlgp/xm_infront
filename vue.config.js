@@ -1,6 +1,20 @@
 const path = require('path');
 module.exports = {
     publicPath: '/',
+    // 配置跨域
+    devServer: {
+        proxy: {
+
+            '/api': { // 请求的代称，写在Axios里的BaseUrl
+                target: 'http://api.book.hyahm.com',  // 真实请求URl
+                changeOrigin: true, // 允许跨域
+                pathRewrite: {  // 替换，通配/api的替换成/
+                    '^/api': '/'
+                }
+            }
+
+        }
+    },
     // 配置图标
     pwa: {
         iconPaths: {
