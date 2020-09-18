@@ -195,7 +195,9 @@ export default {
 
 <style lang="less" scoped>
 .search {
+
   .search_result {
+      height: 100vh;
     .search_box {
       display: flex;
       justify-content: space-between;

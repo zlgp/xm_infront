@@ -1,6 +1,5 @@
 <template>
   <div class="read">
-    <Nav></Nav>
     <div class="read_content area" :class="bgColor==true?'bg_active':''">
       <div class="read_content_top">
         <span class="novel_name">《{{ChapterList.book_name}}》</span>
@@ -109,7 +108,6 @@
 </template>
 
 <script>
-import Nav from "../components/nav";
 import Foot from "../components/foot.vue";
 
 import {
@@ -121,7 +119,7 @@ import {
 export default {
   components: {
     Foot,
-    Nav
+
   },
   setup(propos, context) {
     const _this = context.root;
